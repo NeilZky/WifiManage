@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.multipart.maxSize" value="104857600" />
+	<package name="default" namespace="/" extends="struts-default">
+
+		<default-action-ref name="index" />
+
+		<global-results>
+			<result name="error">/error-404.html</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+		<action name="index" class="com.wifi.action.UserAction" method="index">
+			<result name="success" type="redirect">deviceState.action</result>
+			<result name="login">login.jsp</result>
+		</action>
+
+		<action name="userManage" class="com.wifi.action.UserAction"
+			method="userManage">
+			<result name="success">usermanage.jsp</result>
+			<result name="input">error.html</result>
+			<result name="login">login.jsp</result>
+		</action>
+
+		<action name="navPageManage" class="com.wifi.action.NavPageAction"
+			method="navPageManage">
+			<result name="success">usermanage.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="navPageTypeManage" class="com.wifi.action.NavPageTypeAction"
+			method="navPageTypeManage">
+			<result name="success">navPageTypeManage.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="navPageManage" class="com.wifi.action.NavPageAction"
+			method="navPageManage">
+			<result name="success">navPageManage.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="scrollAd" class="com.wifi.action.ScrollAdAction"
+			method="scrollAd">
+			<result name="success">scrollAd.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="commonAreaConfig" class="com.wifi.action.CommonAreaConfigAction"
+			method="commonAreaConfig">
+			<result name="success">commonAreaConfig.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="commonArea" class="com.wifi.action.CommonAreaAction"
+			method="commonArea">
+			<result name="success">commonArea.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="addCommonArea" class="com.wifi.action.CommonAreaAction"
+			method="addCommonArea">
+			<result name="success" type="redirect">commonArea.action?uid=${ca.uid}
+			</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="updateCommonArea" class="com.wifi.action.CommonAreaAction"
+			method="updateCommonArea">
+			<result name="success" type="redirect">commonArea.action?uid=${ca.uid}
+			</result>
+			<result name="input">error.html</result>
+		</action>
+		
+		<action name="saveCommonAreaRelease" class="com.wifi.action.CommonAreaAction"
+			method="saveCommonAreaRelease">
+			<result name="success" type="redirect">commonArea.action?uid=${uid}
+			</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="cancelCommonAreaRelease" class="com.wifi.action.CommonAreaAction"
+			method="cancelCommonAreaRelease">
+			<result name="success" type="redirect">commonArea.action?uid=${uid}
+			</result>
+			<result name="input">error.html</result>
+		</action>
+
+
+		<action name="scrollAd" class="com.wifi.action.ScrollAdAction"
+			method="scrollAd">
+			<result name="success">scrollAd.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="addScrollAd" class="com.wifi.action.ScrollAdAction"
+			method="addScrollAd">
+			<result name="success" type="redirect">scrollAd.action</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="updateScrollAd" class="com.wifi.action.ScrollAdAction"
+			method="updateScrollAd">
+			<result name="success" type="redirect">scrollAd.action</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="cancelScrollAdRelease" class="com.wifi.action.ScrollAdAction"
+			method="cancelScrollAdRelease">
+			<result name="success" type="redirect">scrollAd.action</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="saveScrollAdRelease" class="com.wifi.action.ScrollAdAction"
+			method="saveScrollAdRelease">
+			<result name="success" type="redirect">scrollAd.action</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="sellerConfig" class="com.wifi.action.SellerConfigAction"
+			method="sellerConfig">
+			<result name="success">sellerConfig.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="sellerArea" class="com.wifi.action.SellerAreaAction"
+			method="sellerArea">
+			<result name="success">sellerArea.jsp</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="addSellerArea" class="com.wifi.action.SellerAreaAction"
+			method="addSellerArea">
+			<!--使用fileUpload拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10485760</param>
+				<param name="includeMethods">upload</param>
+			</interceptor-ref>
+			<!-- 记得加上默认的拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">sellerArea.action?uid=${uid}
+			</result>
+			<result name="input">error.html</result>
+		</action>
+		
+		<action name="saveSellerAreaRelease" class="com.wifi.action.SellerAreaAction"
+			method="saveSellerAreaRelease">
+			<result name="success" type="redirect">sellerArea.action?uid=${uid}
+			</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="cancelSellerAreaRelease" class="com.wifi.action.SellerAreaAction"
+			method="cancelSellerAreaRelease">
+			<result name="success" type="redirect">sellerArea.action?uid=${uid}
+			</result>
+			<result name="input">error.html</result>
+		</action>
+		
+		<action name="updateSellerArea" class="com.wifi.action.SellerAreaAction"
+			method="updateSellerArea">
+			<!--使用fileUpload拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10485760</param>
+				<param name="includeMethods">upload</param>
+			</interceptor-ref>
+			<!-- 记得加上默认的拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">sellerArea.action?uid=${uid}
+			</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="connect" class="com.wifi.action.ConnectAction">
+			<result name="sucPage">sucPage.jsp</result>
+			<result name="sucPageMobile">sucPageMobile.jsp</result>
+		</action>
+
+		<action name="pageCount" class="com.wifi.action.PageCountAction"
+			method="pageCount">
+			<result name="success">pageCount.jsp</result>
+		</action>
+
+		<action name="sellerPageCount" class="com.wifi.action.SellerPageCountAction"
+			method="sellerPageCount">
+			<result name="success">sellerPageCount.jsp</result>
+		</action>
+
+		<action name="redirect" class="com.wifi.action.RedirectAction">
+			<result name="success" type="redirect">http://${redirectUrl}
+			</result>
+		</action>
+
+		<action name="linkCount" class="com.wifi.action.LinkCountAction">
+			<result name="success">${redirectPage}</result>
+		</action>
+
+		<action name="commonAreaConfigList" class="com.wifi.action.CommonAreaConfigAction"
+			method="commonAreaConfigList">
+			<result name="success">commonAreaConfigList.jsp</result>
+			<result name="commonAreaConfig" type="redirect">commonAreaConfig.action?uid=${uid}
+			</result>
+		</action>
+
+		<action name="commonAreaList" class="com.wifi.action.UserAction"
+			method="userManage">
+			<result name="success">commonAreaList.jsp</result>
+		</action>
+
+		<action name="sellerConfigList" class="com.wifi.action.SellerConfigAction"
+			method="sellerConfigList">
+			<result name="sellerConfigList">sellerConfigList.jsp</result>
+		</action>
+
+
+		<action name="sellerAreaList" class="com.wifi.action.SellerAreaAction"
+			method="sellerAreaList">
+			<result name="sellerAreaList">sellerAreaList.jsp</result>
+		</action>
+
+		<action name="deviceStateList" class="com.wifi.action.DeviceStateAction"
+			method="deviceStateList">
+			<result name="deviceStateList">deviceStateList.jsp</result>
+		</action>
+
+		<action name="sellerPageCountList" class="com.wifi.action.SellerPageCountAction"
+			method="sellerPageCountList">
+			<result name="sellerPageCountList">sellerPageCountList.jsp
+			</result>
+		</action>
+
+
+		<action name="addNavPage" class="com.wifi.action.NavPageAction"
+			method="addNavPage">
+			<result name="success" type="redirect">navPageManage.action</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="cancelNavPagePreview" class="com.wifi.action.NavPageAction"
+			method="cancelNavPagePreview">
+			<result name="success" type="redirect">navPageManage.action</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="saveNavPageRelease" class="com.wifi.action.NavPageAction"
+			method="saveNavPageRelease">
+			<result name="success" type="redirect">navPageManage.action</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="updateNavPage" class="com.wifi.action.NavPageAction"
+			method="updateNavPage">
+			<!--使用fileUpload拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10485760</param>
+				<param name="includeMethods">upload</param>
+			</interceptor-ref>
+			<!-- 记得加上默认的拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">navPageManage.action</result>
+			<result name="input">error.html</result>
+		</action>
+
+		<action name="deviceState" class="com.wifi.action.DeviceStateAction">
+			<result name="success">deviceState.jsp</result>
+		</action>
+
+		<action name="logout" class="com.wifi.action.UserAction"
+			method="logout">
+			<result name="success">login.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="jsonAction" namespace="/" extends="json-default">
+
+		<action name="login" class="com.wifi.action.UserAction" method="login">
+			<result type="json">
+				<param name="root">loginResult</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<action name="updatePwd" class="com.wifi.action.UserAction"
+			method="updatePwd">
+			<result type="json">
+				<param name="root">result</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+
+
+		<action name="addUser" class="com.wifi.action.UserAction"
+			method="addUser">
+			<result type="json">
+				<param name="root">addUserResult</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+
+		<action name="updateUser" class="com.wifi.action.UserAction"
+			method="updateUser">
+			<result type="json">
+				<param name="root">updateUserResult</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<action name="deleteUsers" class="com.wifi.action.UserAction"
+			method="deleteUsers">
+			<result type="json">
+				<param name="root">deleteUsersResult</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+
+		<action name="addNavPageType" class="com.wifi.action.NavPageTypeAction"
+			method="addNavPageType">
+			<result type="json">
+				<param name="root">addNavPageTypeResult</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+
+		<action name="updateNavPageType" class="com.wifi.action.NavPageTypeAction"
+			method="updateNavPageType">
+			<result type="json">
+				<param name="root">updateNavPageTypeResult</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<action name="deleteNavPageTypes" class="com.wifi.action.NavPageTypeAction"
+			method="deleteNavPageTypes">
+			<result type="json">
+				<param name="root">deleteNavPageTypeResult</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<action name="deleteNavPages" class="com.wifi.action.NavPageAction"
+			method="deleteNavPages">
+			<result type="json">
+				<param name="root">result</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<action name="updateCommonAreaConfig" class="com.wifi.action.CommonAreaConfigAction"
+			method="updateCommonAreaConfig">
+			<result type="json">
+				<param name="root">result</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<action name="deleteCommonAreas" class="com.wifi.action.CommonAreaAction"
+			method="deleteCommonAreas">
+			<result type="json">
+				<param name="root">result</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<action name="deleteSellerAreas" class="com.wifi.action.SellerAreaAction"
+			method="deleteSellerAreas">
+			<result type="json">
+				<param name="root">result</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+
+
+		<action name="deleteScrollAds" class="com.wifi.action.ScrollAdAction"
+			method="deleteScrollAds">
+			<result type="json">
+				<param name="root">result</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+		<action name="updateSellerConfig" class="com.wifi.action.SellerConfigAction"
+			method="updateSellerConfig">
+			<result type="json">
+				<param name="root">result</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>
